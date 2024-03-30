@@ -1,0 +1,84 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/usercenter/index",
+			"style": {
+				// "navigationStyle": "custom",
+				"navigationBarTitleText": "我的",
+				"backgroundTextStyle": "light",
+                "navigationBarBackgroundColor": "#3475F3",
+                "navigationBarTextStyle": "white",
+                "enablePullDownRefresh": true
+			}
+		},
+		{
+			"path": "pages/home/index",
+			"style": {
+				"navigationBarTitleText": "主页"
+			}
+		},
+		{
+			"path": "pages/account/login",
+			"style": {
+				"navigationBarTitleText": "登录"
+			}
+		},
+		{
+			"path": "pages/account/register",
+			"style": {
+				"navigationBarTitleText": "注册"
+			}
+		},
+		{
+			"path": "pages/account/modify",
+			"style": {
+				"navigationBarTitleText": "修改密码"
+			}
+		},
+		{
+			"path": "pages/square/index",
+			"style": {
+				"navigationBarTitleText": "广场"
+			}
+		},
+		{
+			"path": "pages/active/index",
+			"style": {
+				"navigationBarTitleText": "活动"
+			}
+		},
+		{
+			"path": "pages/download/index",
+			"style": {
+				"navigationBarTitleText": "下载列表"
+			}
+		},
+		{
+			"path": "pages/information/index",
+			"style": {
+				"navigationBarTitleText": "我的消息"
+			}
+		},
+		{
+			"path": "pages/songlist/index",
+			"style": {
+				"navigationBarTitleText": "列表"
+			}
+		}
+	],
+	"subPackages": [{
+		"root": "pagesA",
+		"pages": [{
+			"path": "list/index",
+			"style": {
+				"navigationBarTitleText": "实验"
+			}
+		}]
+	}],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	}
+}
