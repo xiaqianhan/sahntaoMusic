@@ -1,0 +1,101 @@
+@keyframes rotate {
+  0% { transform: rotate(0deg); } /* 初始状态为不旋转 */
+  100% { transform: rotate(360deg); } /* 结束状态为完全旋转一周（360度）*/
+}
+.screening{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    height: 18vw;
+    // background: red;
+    .playMasking{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 18vw;
+        // z-index: 99;
+        background: #fff;
+        border-top: 0.1333vw solid #cac8c8;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1vw 4vw;
+        box-sizing: border-box;
+        .playMasking_lef{
+            display: flex;
+            align-items: center;
+            .icon{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 15vw;
+                height: 15vw;
+                background: #000;
+                border-radius: 50%;
+                overflow: hidden;
+                margin-right: 2.5vw;
+                img{
+                    width: 11vw;
+                    height: 11vw;
+                    border-radius: 50%;
+                }
+                .rotateimg{
+                    animation-name: rotate;
+                    animation-duration: 10s;
+                    animation-iteration-count: infinite;
+                    animation-timing-function: linear;
+                }
+            }
+            .info{
+                width: 42vw;
+                h3{
+                    width: 100%;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    overflow: hidden;
+                }
+                p{
+                    width: 100%;
+                    text-overflow: ellipsis;
+                    color: #606060;
+                    white-space: nowrap;
+                    overflow: hidden;
+                }
+            }
+        }
+        .playMasking_rig{
+            display: flex;
+            align-items: center;
+            .playbtn{
+                display: flex;
+                width: 10vw;
+                height: 10vw;
+                margin: 0 1.5vw;
+                button{
+                    width: 100%;
+                    height: 100%;
+                    background: #fff;
+                    padding: 0;
+                    border: 0;
+                    img{
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+                button::after{
+                    border: 0;
+                }
+            }
+            .previous, .next{
+                width: 7vw;
+                height: 7vw;
+                img{
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+        }
+    }
+}

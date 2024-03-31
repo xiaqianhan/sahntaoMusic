@@ -1,8 +1,8 @@
 export default {
-    get(url, params) {
+    get(url, params, Objec) {
         return this.request(url, params, 'GET');
     },
-    post(url, params) {
+    post(url, params, Objec) {
         return this.request(url, params, 'POST');
     },
     request(url, params, method) {

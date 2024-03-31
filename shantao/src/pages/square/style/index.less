@@ -1,0 +1,203 @@
+.square{
+    padding-bottom: 8vw;
+    width: 100%;
+    min-height: 100vh;
+    box-sizing: border-box;
+    /* 轮播图 */
+    .swp{
+        box-sizing: border-box;
+        padding: 5vw 3vw;
+        width: 100%;
+        height: 100%;
+        .itembox{
+            width: 100%;
+            height: 100%;
+            image{
+                width: 100%;
+                height: 100%;
+            }
+        }
+        .title{
+            margin-top: 6.4vw;
+            color: #4095E5;
+            line-height: 1.8667vw;
+        }
+    }
+    .splitLine{
+        width: 100%;
+        height: 0.04vw;
+        background-color: #BBBBBB;
+        box-shadow: 0 0.2667vw 0.4vw 0 #000000;
+    }
+    .messageBox{
+        padding: 3.3333vw 2vw;
+        box-sizing: border-box;
+        .addMessages{
+            width: 10.9333vw;
+            height: 6.6vw;
+            border-radius: 1.3333vw;
+            background-color: #4095E5;
+            margin-bottom: 2.9333vw;
+            text-align: center;
+            line-height: 5.6vw;
+            color: white;
+            font-weight: 800;
+            float: right;
+        }
+        .conversationList{
+            border: 0.1333vw solid #9A9A9A;
+            background-color: white;
+            padding: 3.3333vw;
+            width: 100%;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            border-radius: 1.3333vw;
+            margin-bottom: 3.8333vw;
+        }
+    }
+}
+.conversationInformation{
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.conversationInformation .ico{
+    width: 40px;
+    height: 40px;
+    background: #4095E5;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+.conversationInformation .ico image{
+    width: 100%;
+    height: 100%;
+}
+.conversationInformation .information{
+    display: flex;
+    flex-direction: column;
+}
+.information-top{
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 3px;
+}
+.information-top h2{
+    font-weight: 500;
+    font-size: 17px;
+    margin-right: 10px;
+}
+.information-top p{
+    font-size: 14px;
+}
+.information-botton{
+    font-size: 14px;
+    color: #9A9A9A;
+}
+.conversationContent{
+    max-height: 36px;
+    padding: 0 15px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+}
+.conversationContent p{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+.conversationTab{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.conversationTab .tab-item{
+    display: flex;
+    justify-content: center;
+}
+.conversationTab .tab-item image{
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+}
+.conversationTab .tab-item p{
+    color: #9A9A9A;
+}
+.conversationNone{
+    width: 100%;
+    height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #858484;
+    font-size: 18px;
+}
+/* 输入弹窗 */
+.inputPop{
+    left: 0;
+    top: 0;
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+}
+.inputPop .bg{
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    background-color: #101010;
+    opacity: 0.8;
+}
+.inputPop .content-box{
+    position: absolute;
+    margin: 20vw 5vw;
+    border-radius: 15px;
+    padding: 20px;
+    box-sizing: border-box;
+    width: 90vw;
+    min-height: 20vh;
+    background-color: white;
+    z-index: 99;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.inputPop .content-box .textbox{
+    width: 100%;
+    position: relative;
+}
+.inputPop .content-box .textbox h4{
+    margin: 3vw 0 2vw;
+}
+.inputPop .content-box .textbox input{
+    border: 1px solid #9A9A9A;
+    height: 40px;
+    padding: 2px 10px;
+}
+.inputPop .content-box .textbox textarea{
+    border: 1px solid #9A9A9A;
+    height: 210px;
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+.inputPop .content-box .textbox .remaining{
+    margin-top: 5px;
+    color: #9A9A9A;
+    float: right;
+}
+.inputPop .content-box .btnBox{
+    margin: 5px 0 10px;
+    width: 80%;
+    display: flex;
+    justify-content: space-around;
+}
+.inputPop .content-box .btnBox .btn{
+    width: 100px;
+    height: 30px;
+    line-height: 30px;
+    background-color: #4095E5;
+    text-align: center;
+    color: white;
+    border-radius: 5px;
+}

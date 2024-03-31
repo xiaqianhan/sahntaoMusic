@@ -15,12 +15,12 @@
             <div class="box">
                 <div class="banner boxs">
                     <div class="option">
-                        <div class="icon"><img src="http://www.xiastyq.top/cqmp_test/shantaoMusic/icon/tb38.png" alt=""></div>
+                        <div class="icon"><img src="http://www.xiastyq.top/cqmp_test/shantaoMusic/icon/dynamic.png" alt=""></div>
                         <h3>推荐</h3>
                     </div>
                     <div class="cutApart"></div>
                     <div class="option">
-                        <div class="icon"><img src="http://www.xiastyq.top/cqmp_test/shantaoMusic/icon/tb13.png" alt=""></div>
+                        <div class="icon"><img src="http://www.xiastyq.top/cqmp_test/shantaoMusic/icon/recommendation.png" alt=""></div>
                         <h3>动态</h3>
                     </div>
                 </div>

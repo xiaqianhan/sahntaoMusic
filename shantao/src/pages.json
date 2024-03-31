@@ -1,6 +1,14 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
+			"path": "pages/home/index",
+			"style": {
+				"navigationBarTitleText": "主页",
+				"enablePullDownRefresh": true,
+				"onReachBottomDistance": 50 
+			}
+		},
+		{
 			"path": "pages/usercenter/index",
 			"style": {
 				// "navigationStyle": "custom",
@@ -9,12 +17,6 @@
                 "navigationBarBackgroundColor": "#3475F3",
                 "navigationBarTextStyle": "white",
                 "enablePullDownRefresh": true
-			}
-		},
-		{
-			"path": "pages/home/index",
-			"style": {
-				"navigationBarTitleText": "主页"
 			}
 		},
 		{
@@ -64,17 +66,50 @@
 			"style": {
 				"navigationBarTitleText": "列表"
 			}
+		},
+		{
+			"path": "pages/webview/index",
+			"style": {
+				"navigationBarTitleText": "跳转"
+			}
+		},
+		{
+			"path": "pages/MVCollection/index",
+			"style": {
+				"navigationBarTitleText": "MV"
+			}
+		}
+		// {
+		// 	"path": "pages/songsheet/index",
+		// 	"style": {
+		// 		"navigationBarTitleText": "列表"
+		// 	}
+		// }
+	],
+	"subPackages": [
+		{
+			"root": "pagesA",
+			"pages": [
+				{
+					"path": "list/index",
+					"style": {
+						"navigationBarTitleText": "实验"
+					}
+				}
+			]
+		},
+		{
+			"root": "pages/songsheet",
+			"pages": [
+				{
+					"path": "index",
+					"style": {
+						"navigationBarTitleText": "列表"
+					}
+				}
+			]
 		}
 	],
-	"subPackages": [{
-		"root": "pagesA",
-		"pages": [{
-			"path": "list/index",
-			"style": {
-				"navigationBarTitleText": "实验"
-			}
-		}]
-	}],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",
