@@ -1,0 +1,43 @@
+.musicList{
+    width: 100vw;
+    height: 100vh;
+    padding: 4vw 6vw;
+    box-sizing: border-box;
+    .musilistbox{
+        height: 100vh;
+        overflow-y: scroll;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        .musicitem{
+            padding: 2vw 0;
+            box-sizing: border-box;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 0.1333vw solid rgb(120, 116, 116);
+            .info{
+                display: flex;
+                flex-direction: column;
+                h3{
+                    color: black;
+                }
+                p{
+                    color: rgb(100, 97, 97);
+                }
+            }
+            .icon{
+                width: 7vw;
+                height: 7vw;
+                img{
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+        }
+        .musicitem:last-child{
+            border: 0;
+        }
+    }
+}

@@ -14,12 +14,12 @@
         <div class="content">
             <div class="box">
                 <div class="banner boxs">
-                    <div class="option">
+                    <div class="option" @click="recommendation">
                         <div class="icon"><img src="http://www.xiastyq.top/cqmp_test/shantaoMusic/icon/dynamic.png" alt=""></div>
                         <h3>推荐</h3>
                     </div>
                     <div class="cutApart"></div>
-                    <div class="option">
+                    <div class="option" @click="dynamic">
                         <div class="icon"><img src="http://www.xiastyq.top/cqmp_test/shantaoMusic/icon/recommendation.png" alt=""></div>
                         <h3>动态</h3>
                     </div>
@@ -76,17 +76,17 @@ export default {
                     type: 1,
                     text: "我的收藏",
                     img: require("../../static/pages/usercenter/collect.png"),
-                    url: "/pages/songlist/index?type=1"
+                    url: "/pages/download/index?title=" + encodeURIComponent("我的收藏")
                 },{
                     type: 1,
                     text: "我的喜欢",
                     img: require("../../static/pages/usercenter/appraise.png"),
-                    url: "/pages/songlist/index?type=2"
+                    url: "/pages/download/index?title=" + encodeURIComponent("我的喜欢")
                 },{
                     type: 1,
                     text: "最近播放",
                     img: require("../../static/pages/usercenter/pay.png"),
-                    url: "/pages/songlist/index?type=3"
+                    url: "/pages/download/index?title=" + encodeURIComponent("最近播放")
                 }]
             },{
                 itemList: [{
@@ -98,12 +98,12 @@ export default {
                     type: 0,
                     text: "下载管理",
                     img: require("../../static/pages/usercenter/drawback.png"),
-                    url: "/pages/download/index"
+                    url: "/pages/download/index?title=" + encodeURIComponent("下载管理")
                 },{
                     type: 1,
                     text: "我的歌单",
                     img: require("../../static/pages/usercenter/indent.png"),
-                    url: ""
+                    url: "/pages/download/index?title=" + encodeURIComponent("我的歌单")
                 }]
             }],
             mordata: [
@@ -130,6 +130,16 @@ export default {
         this.unsername = wx.getStorageSync("unsername");
     },
     methods: {
+        recommendation() {
+            wx.navigateTo({
+                url: "/pages/songsheet/index?title=" + encodeURIComponent("推荐")
+            })
+        },
+        dynamic() {
+            wx.navigateTo({
+                url: "/pages/active/index"
+            })
+        },
         gologin() {
             wx.navigateTo({
                 url: "/pages/account/login"

@@ -1,6 +1,9 @@
 <template>
     <div class="home">
-        <div class="serch">
+        <div class="serch" @click="goview({
+			title: '搜索',
+			url: '/pages/search/index'
+		})">
 			<div class="icon"><img src="http://www.xiastyq.top/cqmp_test/shantaoMusic/icon/serch.png" alt=""/></div>
 			<input type="text" placeholder="歌曲搜索" />
 		</div>
@@ -142,7 +145,14 @@ export default {
 			wx.navigateTo({
                 url: item.url
             })
-		} 
+		},
+		onShareAppMessage(res) {
+			return {
+				title: "山弢映月，音乐如清风",
+				path: "/pages/home/index",
+				imageUrl: "http://www.xiastyq.top/cqmp_test/shantaoMusic/icon/share.png"
+			};
+		}
 	}
 }
 </script>

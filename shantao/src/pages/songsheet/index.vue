@@ -34,7 +34,7 @@
                 </div>
             </div>
         </div>
-        <ScreEning v-if="showScreEning" :Value="Value" :musicinfo="musicinfo" @previous="previous" @next="next"></ScreEning>
+        <ScreEning v-if="showScreEning" @gomusicinfo="gomusicinfo" :Value="Value" :musicinfo="musicinfo" @previous="previous" @next="next"></ScreEning>
     </div>
 </template>
 <script>
@@ -70,6 +70,15 @@ export default {
         this.getmusicList();
     },
 	methods: {
+        gomusicinfo() {
+            wx.setStorageSync("musicoCurrent");
+            wx.setStorageSync("musicolist");
+            wx.setStorageSync("musicoCurrent", this.selectindex); // 当前选择
+            wx.setStorageSync("musicolist", this.songData);
+            wx.navigateTo({
+                url: "/pages/musicinfo/index"
+            })
+        },
         playmusic(item, index) {
             this.showScreEning = true;
             this.Value = !this.Value;

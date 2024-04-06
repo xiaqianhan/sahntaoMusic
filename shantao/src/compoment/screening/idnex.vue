@@ -13,7 +13,7 @@
 			@timeupdate="onTimeUpdate"
 			></audio>
         <div class="playMasking">
-            <div class="playMasking_lef">
+            <div class="playMasking_lef" @click="goview">
                 <div class="icon">
                     <img :class="isAutoPlay?'rotateimg':''" src="http://p2.music.126.net/go9IapEBzVE5oUAa90IO3Q==/109951169313536434.jpg?param=177y177" alt="">
                 </div>
@@ -74,7 +74,10 @@ export default {
         // this.isAutoPlay = true;
     },
     methods: {
-         previous() {
+        goview() {
+            this.$emit("gomusicinfo")
+        },
+        previous() {
             this.$emit("previous")
         },
         next() {

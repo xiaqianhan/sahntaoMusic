@@ -1,20 +1,5 @@
 <template>
     <div class="active">
-		<!-- <audio
-			class="audiobox"
-			id="myAudio"
-			:src="qwurl"
-			controls
-			name="王力宏"
-			author="11"
-			:autoplay="isAutoPlay"
-			@play="onPlay"
-			@pause="onPause"
-			@timeupdate="onTimeUpdate"
-			></audio>
-		<button @click="play">播放</button>
-		<button @click="pause">暂停</button>
-		<button @click="stop">停止</button> -->
         <div v-for="(item,index) in activeData" :key="index">
             <div class="activebox" :style="{backgroundColor : fontBackColor[index > 4?(index-(parseInt(index/5)*5)):index]}" @click="godetails(item.url)">
                 <div class="activebox-top">
@@ -80,47 +65,8 @@ export default {
 		}
 	},
 	async mounted() {
-		// const response = await Api.getSongData("王力宏");
-		// const response2 = await Api.getactData();
-		// console.log(response);
-		// const str = '<div  class="wai3" style="overflow-wrap: break-word;">'
-		// const strtext = String(response2);
-		// const number1 = strtext.indexOf(str);
-		// const strtexts = strtext.slice(number1);
-		// const number2 = strtexts.indexOf("http");
-		// const number3 = strtexts.indexOf("</div>");
-		// console.log(strtexts.slice(number2, number3));
-		// console.log(String(response2).indexOf(str));
-		// this.qwurl = strtexts.slice(number2, number3);
-		// 文件外链:http://www.kumeiwp.com/sub/filestores/2023/05/01/b805646302e3b417ec44422d92626956.mp3
-		// <img src=\"static/images/gs/mp3.gif\" align=\"absmiddle\" border=\"0\">\n                                <a href=\"/file/152448.html\" target=\"_blank\" title=\"最近 王小帅.mp3\">最近 <span class=\"txtred\" style=\"float: inherit;\">王</span>小帅.mp3</a>
-		// 初始化InnerAudioContext实例
-		this.audioCtx = uni.createInnerAudioContext();
-		this.audioCtx.src = this.qwurl;
-		this.audioCtx.autoplay = false;
 	},
 	methods: {
-		play() {
-			this.audioCtx.play();
-			this.audioCtx.autoplay = true;
-		},
-		pause() {
-			this.audioCtx.pause();
-			this.audioCtx.autoplay = false;
-		},
-		stop() {
-			this.audioCtx.stop();
-			this.audioCtx.autoplay = false;
-		},
-		onPlay(event) {
-			console.log('开始播放');
-		},
-		onPause(event) {
-			console.log('暂停播放');
-		},
-		onTimeUpdate(event) {
-			console.log('当前播放进度：', event.detail.currentTime);
-		},
 		godetails(url) {
 			wx.navigateTo({
                 url: "/pages/webview/index?gourl=" + encodeURIComponent(url)

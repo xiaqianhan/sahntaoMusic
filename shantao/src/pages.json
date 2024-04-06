@@ -52,7 +52,7 @@
 		{
 			"path": "pages/download/index",
 			"style": {
-				"navigationBarTitleText": "下载列表"
+				"navigationBarTitleText": "歌曲列表"
 			}
 		},
 		{
@@ -62,9 +62,9 @@
 			}
 		},
 		{
-			"path": "pages/songlist/index",
+			"path": "pages/search/index",
 			"style": {
-				"navigationBarTitleText": "列表"
+				"navigationBarTitleText": "搜索"
 			}
 		},
 		{
@@ -79,25 +79,8 @@
 				"navigationBarTitleText": "MV"
 			}
 		}
-		// {
-		// 	"path": "pages/songsheet/index",
-		// 	"style": {
-		// 		"navigationBarTitleText": "列表"
-		// 	}
-		// }
 	],
 	"subPackages": [
-		{
-			"root": "pagesA",
-			"pages": [
-				{
-					"path": "list/index",
-					"style": {
-						"navigationBarTitleText": "实验"
-					}
-				}
-			]
-		},
 		{
 			"root": "pages/songsheet",
 			"pages": [
@@ -105,6 +88,17 @@
 					"path": "index",
 					"style": {
 						"navigationBarTitleText": "列表"
+					}
+				}
+			]
+		},
+		{
+			"root": "pages/musicinfo",
+			"pages": [
+				{
+					"path": "index",
+					"style": {
+						"navigationBarTitleText": "歌曲"
 					}
 				}
 			]
