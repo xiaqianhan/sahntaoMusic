@@ -58,6 +58,7 @@ export default {
     },
     data() {
         return {
+            number: 0,
             music: this.musicinfo.url,
             audioCtx: null,
             isAutoPlay: false
@@ -87,6 +88,21 @@ export default {
 			this.audioCtx.play();
 			this.audioCtx.autoplay = true;
             this.isAutoPlay = true;
+            
+            const historymucic = wx.getStorageSync("historymucic") || [];
+            historymucic.forEach((item) => {
+                if (item.file_downs === this.musicinfo.file_downs) {
+                    this.number -=1;
+                } else {
+                    this.number +=1;
+                }
+            });
+            console.log(this.number, historymucic.length);
+            if (this.number === historymucic.length) {
+                historymucic.push(this.musicinfo);
+                wx.setStorageSync("historymucic", historymucic);
+            }
+            this.number = 0
 		},
 		pause() {
 			this.audioCtx.pause();

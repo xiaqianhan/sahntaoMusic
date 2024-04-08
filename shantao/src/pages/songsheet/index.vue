@@ -71,15 +71,13 @@ export default {
     },
 	methods: {
         gomusicinfo() {
-            wx.setStorageSync("musicoCurrent");
-            wx.setStorageSync("musicolist");
             wx.setStorageSync("musicoCurrent", this.selectindex); // 当前选择
-            wx.setStorageSync("musicolist", this.songData);
             wx.navigateTo({
                 url: "/pages/musicinfo/index"
             })
         },
         playmusic(item, index) {
+            wx.setStorageSync("musicolist", this.songData);
             this.showScreEning = true;
             this.Value = !this.Value;
             this.selectindex = index;

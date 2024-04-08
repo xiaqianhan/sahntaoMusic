@@ -38,9 +38,21 @@
 			}
 		},
 		{
+			"path": "pages/account/modefyinfo",
+			"style": {
+				"navigationBarTitleText": "修改信息"
+			}
+		},
+		{
 			"path": "pages/square/index",
 			"style": {
 				"navigationBarTitleText": "广场"
+			}
+		},
+		{
+			"path": "pages/square/details",
+			"style": {
+				"navigationBarTitleText": "详情"
 			}
 		},
 		{

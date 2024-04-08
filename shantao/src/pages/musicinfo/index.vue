@@ -90,9 +90,12 @@
     </div>
 </template>
 <script>
+import * as Api from "../../http/api";
 export default {
 	data() {
 		return {
+            userinfo: {},
+            number: 0,
             ismusiclistshow: false, // 展示播放列表
             isdiscuss: false, // 展示评论框
             content: "",
@@ -115,7 +118,8 @@ export default {
             isInitialization: 0 // 是否初始化
 		}
 	},
-	mounted() {
+	onShow() {
+        this.userinfo = wx.getStorageSync("userinfo");
         this.selectindex = wx.getStorageSync("musicoCurrent"); // 当前选择
         this.musiclist = wx.getStorageSync("musicolist");
         this.musicinfo = this.musiclist[this.selectindex];
@@ -125,10 +129,85 @@ export default {
         this.isAutoPlay = false;
     },
 	methods: {
+        // 发布会话
+        async publish() {
+            console.log(this.content.length);
+            if(this.content.length>0){
+                const res = await Api.addMessage(
+                    this.random(), // 会话编号
+                    this.userinfo.username, // 发布人账户
+                    this.userinfo.nickname, // 发布人昵称
+                    this.musicinfo.titlename, // 发布对应音乐
+                    this.getNowDate(), // 发布时间
+                    this.content, // 发布内容
+                    this.userinfo.user_pic
+                )
+                if (res.status) {
+                    this.content = ""
+                    this.showInput = false;
+                    this.changdiscuss();
+                    uni.showToast({
+                        title: '信息发布成功',
+                        duration: 1000
+                    });
+                } else {
+                    this.changdiscuss();
+                     uni.showToast({
+                        icon: "none",
+                        title: '信息发布失败',
+                        duration: 1000
+                    });
+                }
+            } else {
+                uni.showToast({
+                    icon: "none",
+                    title: '请填写发布内容',
+                    duration: 1000
+                });
+            }
+        },
+        // 生成随机数
+        random() {
+            var Num="";
+            for(var i=0;i<8;i++)
+            {
+                Num+=Math.floor(Math.random()*10);
+            }
+            return Num
+        },
+        // 查询当天日期
+        getNowDate() {
+            const date = new Date();
+            const sign2 = ":";
+            let year = date.getFullYear() // 年
+            let month = date.getMonth() + 1; // 月
+            let day = date.getDate(); // 日
+            let hour = date.getHours(); // 时
+            let minutes = date.getMinutes(); // 分
+            let seconds = date.getSeconds() //秒
+            // 给一位数的数据前面加 “0”
+            if (month >= 1 && month <= 9) {
+                month = "0" + month;
+            }
+            if (day >= 0 && day <= 9) {
+                day = "0" + day;
+            }
+            if (hour >= 0 && hour <= 9) {
+                hour = "0" + hour;
+            }
+            if (minutes >= 0 && minutes <= 9) {
+                minutes = "0" + minutes;
+            }
+            if (seconds >= 0 && seconds <= 9) {
+                seconds = "0" + seconds;
+            }
+            return year + "-" + month + "-" + day + " " + hour + sign2 + minutes + sign2 + seconds;
+        },
         // 下载音乐
         downloadmusic() {
+            const This = this;
             wx.downloadFile({
-                url: this.musicinfo.url,
+                url: This.musicinfo.url,
                 success(res){
                     console.log(res);
                     if (res.statusCode === 200) {
@@ -140,6 +219,20 @@ export default {
                                     icon: "none",
                                     duratioon: 1000
                                 })
+                                const downmusic = wx.getStorageSync("downmusic") || [];
+                                downmusic.forEach((item) => {
+                                    if (item.file_downs === This.musicinfo.file_downs) {
+                                        This.number -=1;
+                                    } else {
+                                        This.number +=1;
+                                    }
+                                });
+                                console.log(This.number, downmusic.length);
+                                if (This.number === downmusic.length) {
+                                    downmusic.push(This.musicinfo);
+                                    wx.setStorageSync("downmusic", downmusic);
+                                }
+                                This.number = 0
                             }
                         })
                         console.log("下载成功");
@@ -167,10 +260,6 @@ export default {
         },
         changelist() {
             this.ismusiclistshow = !this.ismusiclistshow;
-        },
-        publish() {
-            // 发布
-            this.changdiscuss();
         },
         changdiscuss() {
             this.isdiscuss = !this.isdiscuss;
@@ -244,6 +333,21 @@ export default {
 			this.audioCtx.play();
 			this.audioCtx.autoplay = true;
             this.isAutoPlay = true;
+
+            const historymucic = wx.getStorageSync("historymucic") || [];
+            historymucic.forEach((item) => {
+                if (item.file_downs === this.musicinfo.file_downs) {
+                    this.number -=1;
+                } else {
+                    this.number +=1;
+                }
+            });
+            console.log(this.number, historymucic.length);
+            if (this.number === historymucic.length) {
+                historymucic.push(this.musicinfo);
+                wx.setStorageSync("historymucic", historymucic);
+            }
+            this.number = 0
 		},
 		pause() {
 			this.audioCtx.pause();

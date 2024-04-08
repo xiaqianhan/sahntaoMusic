@@ -1,7 +1,77 @@
 import request from "./request";
+const requesturl = "http://127.0.0.1:3007"
 
-export function ceshi() {
-    return request.post("/user/findCurrentSerialNum_v1")
+
+// 注册
+export function reguser(username, password) {
+    return request.post(requesturl + "/api/reguser", {
+        username,
+        password
+    })
+}
+
+// 登录
+export function login(username, password) {
+    return request.post(requesturl + "/api/login", {
+        username,
+        password
+    })
+}
+
+// 修改密码
+export function updatepwd(oldPwd, newPwd) {
+    return request.post(requesturl + "/my/updatepwd", {
+        oldPwd,
+        newPwd
+    })
+}
+
+// 修改用户信息
+export function updatepuserinfo(id, nickname, email, user_pic) {
+    return request.post(requesturl + "/my/userinfo", {
+        id,
+        nickname,
+        email,
+        user_pic
+    })
+}
+
+// 获取用户信息
+export function getuserinfo() {
+    return request.get(requesturl + "/my/userinfo")
+}
+
+// 获取广场会话列表
+export function getMessageList() {
+    return request.get(requesturl + "/api/forum")
+}
+
+// 广场发起会话及发起评论
+export function addMessage(conversation,username,nickname,type,time,content,user_pic) {
+    return request.post(requesturl + "/api/forum/add", {
+        conversation,username,nickname,type,time,content,user_pic
+    })
+}
+
+// 获取广场会话列表数据信息
+export function forumDetailed(conversation) {
+    return request.post(requesturl + "/api/forumDetailed", {
+        conversation
+    })
+}
+
+// 点击回复消息
+export function forumDetailedadd(data) {
+    return request.post(requesturl + "/api/forumDetailed/add", data)
+}
+
+// 获取广场会话点赞评论
+export function changeData(type, data, conversation) {
+    return request.post(requesturl + "/api/forum/update", {
+        type,
+        data,
+        conversation
+    })
 }
 
 // 获取列表

@@ -19,6 +19,7 @@
     </div>
 </template>
 <script>
+import * as Api from "../../http/api";
 export default {
     data () {
         return {
@@ -36,7 +37,7 @@ export default {
                 url: "/pages/account/register"
             })
         },
-        login() {
+         async login() {
             const { username, password} = this.userdata;
             if (!username) {
                 return wx.showToast({
@@ -52,9 +53,35 @@ export default {
                     duratioon: 1000
                 })
             }
-            wx.reLaunch({
-                url: "/pages/usercenter/index"
-            })
+            const res = await Api.login(username, password)
+            // console.log(res);
+            if(res.status) {
+                wx.setStorageSync("token", res.token);
+                const userinfo = await Api.getuserinfo();
+                if(userinfo.status) {
+                    wx.showToast({
+                        title: "登录成功",
+                        icon: "none",
+                        duratioon: 1000
+                    })
+                    wx.setStorageSync("userinfo", userinfo.data);
+                    wx.reLaunch({
+                        url: "/pages/usercenter/index"
+                    })
+                } else {
+                    wx.showToast({
+                        title: "获取用户信息失败，请稍后重试",
+                        icon: "none",
+                        duratioon: 1000
+                    })
+                }
+            } else {
+                wx.showToast({
+                    title: "请输入正确的账号密码",
+                    icon: "none",
+                    duratioon: 1000
+                })
+            }
         }
     }
 }
