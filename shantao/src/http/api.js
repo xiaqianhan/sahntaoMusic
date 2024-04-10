@@ -65,6 +65,35 @@ export function forumDetailedadd(data) {
     return request.post(requesturl + "/api/forumDetailed/add", data)
 }
 
+// 获取我的/喜欢 音乐列表数据
+export function musicget(username, type) {
+    return request.post(requesturl + "/api/Mylovemusic/get", {
+        username,
+        type
+    })
+}
+
+// 增加我的/喜欢 音乐列表数据
+export function musicadd(username, singer, file_id, url, type, titlename) {
+    return request.post(requesturl + "/api/Mylovemusic/add", {
+        username,
+        singer,
+        file_id,
+        url,
+        type,
+        titlename
+    })
+}
+
+// 删除我的/喜欢 音乐列表数据
+export function musicdelete(id, username, type) {
+    return request.post(requesturl + "/api/Mylovemusic/delete", {
+        id,
+        username,
+        type
+    })
+}
+
 // 获取广场会话点赞评论
 export function changeData(type, data, conversation) {
     return request.post(requesturl + "/api/forum/update", {

@@ -1,10 +1,10 @@
 /**
- * 论坛列表处理模块
+ * 广场列表处理模块
  */
 // 导入数据库操作模块
 const db = require('../db/index')
 
-// 获取论坛首页列表数据的处理函数
+// 获取广场首页列表数据的处理函数
 exports.getforum = (req, res) => {
     const sql = 'select * from ev_forum'
 
@@ -15,13 +15,13 @@ exports.getforum = (req, res) => {
         // 2. 执行 SQL 语句成功
         res.send({
             status: 1,
-            message: '获取论坛列表数据成功！',
+            message: '获取广场列表数据成功！',
             data: results,
         })
     })
   }
 
-// 增加论坛首页话题的处理函数
+// 增加广场首页话题的处理函数
 exports.addforum = (req, res) => {
     // res.send(req.body);
 
@@ -57,7 +57,7 @@ exports.addforum = (req, res) => {
 exports.delectcontent = (req, res) => {
     // res.send(req.body);
 
-    // 根据书籍编号与用户账号删除书籍列表数据
+    // 根据话题编号与用户账号删除话题列表数据
     const sql = `delete from ev_forum where conversation=?`
 
     db.query(sql, [req.body.conversation], (err, results) => {

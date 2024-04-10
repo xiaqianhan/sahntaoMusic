@@ -46,7 +46,7 @@
                 <div class="musiclist icoon1" @click="changelist"><img src="http://www.xiastyq.top/cqmp_test/shantaoMusic/icon/musiclist.png" alt=""></div>
             </div>
             <div class="labbox">
-                <div class="item">
+                <div class="item" @click="collection(2)">
                     <div class="icon"><img src="http://www.xiastyq.top/cqmp_test/shantaoMusic/icon/tb12.png" alt="" /></div>
                     <p>收藏</p>
                 </div>
@@ -115,6 +115,7 @@ export default {
             selectindex: null, // 选择
             audioCtx: null,
             timers: null,
+            lovemusicinfo: {}, // 喜欢音乐信息
             isInitialization: 0 // 是否初始化
 		}
 	},
@@ -127,8 +128,53 @@ export default {
         this.audioCtx.src = this.musicinfo.url;
         this.audioCtx.autoplay = false;
         this.isAutoPlay = false;
+        this.musicget();
     },
 	methods: {
+        // 获取喜欢列表
+        async musicget() {
+            const res = await Api.musicget(this.userinfo.username, 1)
+            if (res.status) {
+                res.data.forEach((item) => {
+                    console.log(item.file_id, "数据请求");
+                    console.log(this.musicinfo.file_id, "爬取数据");
+                    if (Number(item.file_id) === this.musicinfo.file_id) {
+                        this.islove = true;
+                        this.lovemusicinfo = item;
+                        return;
+                    }
+                })
+            }
+        },
+        // 收藏/喜欢
+        async collection(type) {
+            console.log(this.musicinfo);
+            const {singer, file_id, url, titlename} = this.musicinfo;
+            const res = await Api.musicadd(this.userinfo.username, singer, file_id, url, type, titlename);
+            if (res.status) {
+                const alertmes = type === 1?"添加喜欢成功":"添加收藏成功";
+                uni.showToast({
+                    title: alertmes,
+                    duration: 1000
+                });
+                this.musicget();
+            } else {
+                uni.showToast({
+                    title: res.message,
+                    duration: 1000
+                });
+            }
+        },
+        // 删除喜欢
+        async musicdelete() {
+            if (this.lovemusicinfo.id) {
+                const res = await Api.musicdelete(this.lovemusicinfo.id, this.userinfo.username, 1);
+                if (res.status) {
+                    console.log("移除成功");
+                    this.islove = false;
+                }
+            }
+        },
         // 发布会话
         async publish() {
             console.log(this.content.length);
@@ -265,7 +311,12 @@ export default {
             this.isdiscuss = !this.isdiscuss;
         },
         changelove() {
-            this.islove = !this.islove;
+            if (!this.islove) {
+                this.collection(1)
+                this.islove = true;
+            } else {
+                this.musicdelete();
+            }
         },
         // 切换播放类型
         chngepaytype() {

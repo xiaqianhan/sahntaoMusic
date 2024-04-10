@@ -47,13 +47,17 @@ const userinfoRouter = require('./router/userinfo')
 // 注意：以 /my 开头的接口，都是有权限的接口，需要进行 Token 身份认证
 app.use('/my', userinfoRouter)
 
-// 导入并使用话题详情路由模块
+// 导入并使用评论路由模块
 const forumRouter = require('./router/forum')
 app.use('/api', forumRouter)
 
-// 导入并使用话题详情路由模块
+// 导入并使用评论详情路由模块
 const forumDetailedRouter = require('./router/conversation_detailed')
 app.use('/api', forumDetailedRouter)
+
+// 导入并使用我的喜欢音乐模块
+const loveMusic = require('./router/lovemusic')
+app.use('/api', loveMusic)
 
 // 错误中间件
 app.use(function (err, req, res, next) {
