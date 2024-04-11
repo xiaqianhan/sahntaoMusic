@@ -8,7 +8,10 @@
                 <img src="https://p5.music.126.net/obj/wonDlsKUwrLClGjCm8Kx/28513977227/139b/06a3/e1e3/929b3b4b49bf5c6ef05c795e9e1f2516.png" alt="">
             </div>
         </div>
-        <div class="lyric_box">
+        <div class="lyric_box" v-if="musicinfo.lyrics">
+            <div class="lyrics" style="overflow-y: scroll;text-align: center;" v-html="musicinfo.lyrics"></div>
+        </div>
+        <div class="lyric_box" v-else>
             <p>暂无歌词</p>
         </div>
         <div class="musicline">
@@ -46,7 +49,7 @@
                 <div class="musiclist icoon1" @click="changelist"><img src="http://www.xiastyq.top/cqmp_test/shantaoMusic/icon/musiclist.png" alt=""></div>
             </div>
             <div class="labbox">
-                <div class="item" @click="collection(2)">
+                <div class="item" @click="collection(1)">
                     <div class="icon"><img src="http://www.xiastyq.top/cqmp_test/shantaoMusic/icon/tb12.png" alt="" /></div>
                     <p>收藏</p>
                 </div>
@@ -138,7 +141,7 @@ export default {
                 res.data.forEach((item) => {
                     console.log(item.file_id, "数据请求");
                     console.log(this.musicinfo.file_id, "爬取数据");
-                    if (Number(item.file_id) === this.musicinfo.file_id) {
+                    if (Number(item.file_id) === Number(this.musicinfo.file_id)) {
                         this.islove = true;
                         this.lovemusicinfo = item;
                         return;
@@ -152,7 +155,7 @@ export default {
             const {singer, file_id, url, titlename} = this.musicinfo;
             const res = await Api.musicadd(this.userinfo.username, singer, file_id, url, type, titlename);
             if (res.status) {
-                const alertmes = type === 1?"添加喜欢成功":"添加收藏成功";
+                const alertmes = type === 1?"添加收藏成功":"添加喜欢成功";
                 uni.showToast({
                     title: alertmes,
                     duration: 1000
@@ -312,7 +315,7 @@ export default {
         },
         changelove() {
             if (!this.islove) {
-                this.collection(1)
+                this.collection(2)
                 this.islove = true;
             } else {
                 this.musicdelete();

@@ -38,6 +38,7 @@
     </div>
 </template>
 <script>
+import ConfigData from "../../commant/config";
 import ScreEning from "../../compoment/screening/idnex.vue";
 import * as Api from "../../http/api";
 export default {
@@ -115,6 +116,7 @@ export default {
                 this.page += 1;
                 this.getmusicList();
             }
+            this.songData = ConfigData.musicList.concat(this.songData)
             console.log(this.songData);
         },
 
