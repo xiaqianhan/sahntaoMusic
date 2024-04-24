@@ -1,5 +1,6 @@
 <template>
     <div class="home">
+		<!-- <van-button type="primary">按钮</van-button> -->
         <div class="serch" @click="goview({
 			title: '搜索',
 			url: '/pages/search/index'
@@ -56,11 +57,12 @@
 				
 			</div>
 		</div>
+		<cw>按钮</cw>
         <TabBar actIndex="0"></TabBar>
     </div>
 </template>
 <script>
-import TabBar from "../../compoment/tebBar.vue"
+import TabBar from "@/compoment/tebBar.vue"
 export default {
     components: {
         TabBar
@@ -128,7 +130,6 @@ export default {
 		}
 	},
 	onLoad() {
-
 	},
 	methods: {
 		goUrl(url) {
